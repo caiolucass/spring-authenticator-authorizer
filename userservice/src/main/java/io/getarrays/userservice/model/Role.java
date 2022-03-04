@@ -1,6 +1,7 @@
 package io.getarrays.userservice.model;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Role {
 
+    @ApiModelProperty(value = "Código do cargo de nivel de acesso do usuario")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ApiModelProperty(value = "Nome do cargo de nivel de acesso do usuario")
     private String name;
 }
