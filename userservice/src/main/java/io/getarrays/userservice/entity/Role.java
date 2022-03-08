@@ -1,4 +1,4 @@
-package io.getarrays.userservice.model;
+package io.getarrays.userservice.entity;
 
 
 import io.swagger.annotations.ApiModelProperty;

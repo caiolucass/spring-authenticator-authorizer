@@ -1,6 +1,6 @@
 package io.getarrays.userservice.repository;
 
-import io.getarrays.userservice.model.User;
+import io.getarrays.userservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

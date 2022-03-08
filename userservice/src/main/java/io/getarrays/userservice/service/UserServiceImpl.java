@@ -1,7 +1,7 @@
 package io.getarrays.userservice.service;
 
-import io.getarrays.userservice.model.Role;
-import io.getarrays.userservice.model.User;
+import io.getarrays.userservice.entity.Role;
+import io.getarrays.userservice.entity.User;
 import io.getarrays.userservice.repository.RoleRepository;
 import io.getarrays.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,10 +49,10 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if(user == null){
-            log.error("Usuario nao encontrada no banco de dados");
+            log.error("Usuario nao encontrado no banco de dados");
             throw  new UsernameNotFoundException("Usuario nao encontrada no banco de dados");
         }else{
-            log.info("Usuario encontrada no banco de dados:{}", username);
+            log.info("Usuario encontrado no banco de dados: {}", username);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         user.getRoles().forEach(role -> {
@@ -100,11 +100,11 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     /**
      *
      * @param username
-     * @return
+     * @return username
      */
     @Override
     public User getUser(String username) {
-        log.info("Fetching usuario {}", username);
+        log.info("Fetching usuario: {}", username);
         return userRepository.findByUsername(username);
     }
 
@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
      */
     @Override
     public List<User> getUsers() {
-        log.info("Fetching todos usuarios.");
+        log.info("Fetching todos os usuarios.");
         return userRepository.findAll();
     }
 }

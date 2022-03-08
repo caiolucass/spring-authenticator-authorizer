@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static javax.annotation.Resource.AuthenticationType.APPLICATION;
 
 /**
  * @author Caio Lucas (https://github.com/caiolucass)
@@ -33,7 +32,7 @@ import static javax.annotation.Resource.AuthenticationType.APPLICATION;
  */
 
 @Slf4j
-public class CustonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
 
     /**
@@ -41,7 +40,7 @@ public class CustonAuthenticationFilter extends UsernamePasswordAuthenticationFi
      * @param authenticationManager
      * autentica o usuario que esta efutando login com essa solicitacao e as informcoes
      */
-    public CustonAuthenticationFilter(AuthenticationManager authenticationManager){
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager){
       this.authenticationManager = authenticationManager;
     }
 
@@ -89,6 +88,7 @@ public class CustonAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining()))
                 .sign(algorithm);
 
+        //cria token de refresh
         String refresh_token = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
@@ -96,8 +96,6 @@ public class CustonAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .sign(algorithm);
 
         //envia o token para o cabecalho caso o login seja efutado com sucesso
-//        response.setHeader("acess_token", acess_token);
-//        response.setHeader("refresh_token", refresh_token);
         Map<String, String> tokens = new HashMap<>();
         tokens.put("acess_token", acess_token);
         tokens.put("refresh_token", refresh_token);

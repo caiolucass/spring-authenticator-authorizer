@@ -1,7 +1,7 @@
 package io.getarrays.userservice;
 
-import io.getarrays.userservice.model.Role;
-import io.getarrays.userservice.model.User;
+import io.getarrays.userservice.entity.Role;
+import io.getarrays.userservice.entity.User;
 import io.getarrays.userservice.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +30,7 @@ public class UserserviceApplication {
 	/**
 	 *
 	 * @return
-	 * gera uma nova cripitografa das informacoes do usuario
+	 * gera uma nova criptografia das informacoes do usuario
 	 */
 	@Bean
 	PasswordEncoder passwordEncoder(){
