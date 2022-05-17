@@ -2,6 +2,7 @@ package io.getarrays.userservice.repository;
 
 import io.getarrays.userservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Caio Lucas (https://github.com/caiolucass)
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  */
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

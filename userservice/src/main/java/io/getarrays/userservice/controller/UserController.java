@@ -31,13 +31,18 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @RequestMapping(value = "/user/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public ResponseEntity<User> getUser(@RequestBody String username){
+        return ResponseEntity.ok().body(userService.getUser(username));
+    }
+
+    @RequestMapping(value = "/user/saveUser", method = RequestMethod.POST)
     public ResponseEntity<User> saveUser(@RequestBody User user){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
-    @RequestMapping(value = "/role/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/role/saveRole", method = RequestMethod.POST)
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(role));

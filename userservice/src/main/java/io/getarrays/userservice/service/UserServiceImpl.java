@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService , UserDetailsService {
         User user = userRepository.findByUsername(username);
         if(user == null){
             log.error("Usuario nao encontrado no banco de dados");
-            throw  new UsernameNotFoundException("Usuario nao encontrada no banco de dados");
+            throw  new UsernameNotFoundException("Usuario nao encontrado no banco de dados");
         }else{
             log.info("Usuario encontrado no banco de dados: {}", username);
         }
